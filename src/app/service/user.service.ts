@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface User {
+  mod: boolean;
   email: string;
   password: string;
   cart: Product[];
+
 }
 
 export interface Product {

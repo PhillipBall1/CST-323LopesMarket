@@ -5,19 +5,24 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
-standalone: true,
-imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
   isLoggedIn: boolean = false;
+  isMod: boolean = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
+    });
+
+    this.authService.isMod$.subscribe((modStatus) => {
+      this.isMod = modStatus;
     });
   }
 

@@ -12,6 +12,6 @@
       <a *ngIf="isLoggedIn" (click)="logout()" style="cursor: pointer;">Logout</a>
     </li>
     <li><a *ngIf="isLoggedIn" routerLink="/cart">Cart</a></li>
-    <li><a *ngIf="isLoggedIn" routerLink="/products">Products</a></li>
+    <li><a *ngIf="isMod" routerLink="/products">Products</a></li>
   </ul>
 </nav>

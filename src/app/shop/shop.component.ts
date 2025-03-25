@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService, Product } from '../service/product.service';
+import { CartService } from '../service/cart.service';  // Import CartService
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-standalone: true,
-  imports: [CommonModule, FormsModule  ],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   styleUrls: ['./shop.component.css']
 })
-
-
 export class ShopComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
@@ -20,8 +19,9 @@ export class ShopComponent implements OnInit {
   selectedPriceRange: string = '';
   categories: string[] = [];
   priceRanges: number[] = [20, 40, 60, 80, 100];
+  showSuccessMessage: boolean = false;  // Flag to show success message
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -38,6 +38,18 @@ export class ShopComponent implements OnInit {
         console.error('Error fetching products', err);
       }
     });
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);  // Add product to cart
+
+    // Show success message
+    this.showSuccessMessage = true;
+
+    // Hide the success message after 3 seconds
+    setTimeout(() => {
+      this.showSuccessMessage = false;
+    }, 3000);
   }
 
   filterProducts(): void {

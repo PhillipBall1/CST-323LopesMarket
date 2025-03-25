@@ -1,0 +1,142 @@
+/* Cart Container */
+.cart-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Cart Items */
+.cart-items {
+  margin-top: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 15px 0;
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+/* Item Details */
+.item-details {
+  flex: 1;
+  text-align: left;
+  margin-left: 15px;
+}
+
+.item-details h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.item-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Quantity Controls */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  background: #ff7b00;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.quantity-controls button:hover {
+  background: #ff5c00;
+}
+
+.quantity-controls span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Remove Button */
+.remove-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.remove-btn:hover {
+  background: #cc0000;
+}
+
+/* Cart Footer */
+.cart-footer {
+  margin-top: 20px;
+}
+
+.cart-footer h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.checkout-btn {
+  background: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background: #218838;
+}
+
+/* Empty Cart */
+.empty-cart {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.empty-cart h2 {
+  font-size: 24px;
+  color: #555;
+}
+
+.empty-cart p {
+  font-size: 16px;
+}
+
+.empty-cart a {
+  color: var(--colorD);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.empty-cart a:hover {
+  text-decoration: underline;
+}

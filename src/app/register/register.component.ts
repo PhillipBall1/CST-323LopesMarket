@@ -33,7 +33,10 @@ export class RegisterComponent implements OnInit {
   onRegister() {
     if (this.registerForm.valid) {
       const { email, password } = this.registerForm.value;
-      this.userService.registerUser({ email, password, cart: [] }).subscribe(
+      this.userService.registerUser({
+        email, password, cart: [],
+        mod: false
+      }).subscribe(
         (user) => {
           // Handle successful registration
           this.router.navigate(['/login']);

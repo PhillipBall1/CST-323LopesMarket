@@ -29,9 +29,14 @@
         <div class="card-content">
           <h3>{{ product.item_name }}</h3>
           <p class="price">$ {{ product.price }}</p>
-          <button class="btn">Add to Cart</button>
+          <button class="btn" (click)="addToCart(product)">Add to Cart</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div *ngIf="showSuccessMessage" class="success-message">
+  <p>Item added to cart!</p>
+</div>
+
