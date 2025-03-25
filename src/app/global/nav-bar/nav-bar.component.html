@@ -6,8 +6,12 @@
   <ul class="nav-links">
     <li><a routerLink="/">Home</a></li>
     <li><a routerLink="/shop">Shop</a></li>
-    <li><a routerLink="/login">Login</a></li>
     <li><a routerLink="/about">About</a></li>
-    <li><a routerLink="/products">Products</a></li>
+    <li>
+      <a *ngIf="!isLoggedIn" routerLink="/login">Login</a>
+      <a *ngIf="isLoggedIn" (click)="logout()" style="cursor: pointer;">Logout</a>
+    </li>
+    <li><a *ngIf="isLoggedIn" routerLink="/cart">Cart</a></li>
+    <li><a *ngIf="isLoggedIn" routerLink="/products">Products</a></li>
   </ul>
 </nav>

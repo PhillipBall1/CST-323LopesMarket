@@ -20,7 +20,7 @@
   --fs-md: 2rem;
   --fs-s:  1.5rem;
   --fs-xs: 1rem;
-
+  background-color: var(--colorC);
   overflow-x: hidden;
   overflow-y: auto;
   width: 100%;

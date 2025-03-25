@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService, Product } from '../service/product.service';
+import { ProductService, Product, ProductResponse } from '../service/product.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   standalone: true,
-  imports: [FormsModule, CommonModule  ],
+  imports: [FormsModule, CommonModule],
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
@@ -25,7 +25,7 @@ export class ProductsListComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts().subscribe({
       next: (products) => {
-        this.products = products;
+        this.products = products; // Assign the response array to products
       },
       error: (err) => {
         console.error('Error fetching products', err);
@@ -64,6 +64,7 @@ export class ProductsListComponent implements OnInit {
     this.isEditing = true; // Set the flag to true, indicating we are in edit mode
   }
 
+  // Update an existing product
   updateProduct(): void {
     if (this.newProduct._id) {
       const updatedProduct: Product = { ...this.newProduct, _id: this.newProduct._id };
@@ -80,11 +81,9 @@ export class ProductsListComponent implements OnInit {
     }
   }
 
-
-  // resets form
+  // Reset form for adding or editing products
   resetForm(): void {
     this.newProduct = { _id: '', item_name: '', quantity: 0, price: 0, category: '' };
     this.isEditing = false;
   }
 }
-

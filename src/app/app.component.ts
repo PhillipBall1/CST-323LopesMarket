@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { NavBarComponent } from './global/nav-bar/nav-bar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ import { NavBarComponent } from './global/nav-bar/nav-bar.component';
     RouterOutlet,
     FormsModule,
     ProductsListComponent,
-    NavBarComponent
+    NavBarComponent,
+    ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

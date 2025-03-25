@@ -87,9 +87,10 @@ a {
 
 /* Why Us Section */
 .why-us {
-  background-color: #f4f4f4;
+  background-color: var(--colorD);
   padding: 40px 20px;
   text-align: center;
+  color: var(--light-text-color);
 }
 
 .why-us h2 {
