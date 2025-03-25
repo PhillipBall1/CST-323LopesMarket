@@ -1,0 +1,37 @@
+<div class="shop-container">
+  <div class="sidebar">
+    <h2>Filters</h2>
+
+    <label for="search">Search</label>
+    <input type="text" [(ngModel)]="searchQuery" placeholder="Search products..." (input)="filterProducts()" class="search-input">
+
+    <!-- Category Dropdown -->
+    <label for="category">Category</label>
+    <select id="category" [(ngModel)]="selectedCategory" (change)="filterProducts()" class="filter-select">
+      <option value="">All Categories</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+
+    <!-- Price Range Dropdown -->
+    <label for="priceRange">Price Range</label>
+    <select id="priceRange" [(ngModel)]="selectedPriceRange" (change)="filterProducts()" class="filter-select">
+      <option value="">Any Price</option>
+      <option *ngFor="let price of priceRanges" [value]="price">< {{ price | currency }}</option>
+    </select>
+  </div>
+
+  <!-- Product Display -->
+  <div class="product-display">
+    <h1>Shop Our Products</h1>
+    <div class="product-cards">
+      <div class="product-card" *ngFor="let product of filteredProducts">
+        <img src="assets/images/{{product.category}}.png" alt="{{ product.item_name }}" class="product-image">
+        <div class="card-content">
+          <h3>{{ product.item_name }}</h3>
+          <p class="price">$ {{ product.price }}</p>
+          <button class="btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
