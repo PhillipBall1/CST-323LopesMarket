@@ -12,7 +12,7 @@
         placeholder="Enter your email"
       />
       <div
-        *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched"
+        *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
         class="error-message"
       >
         Please enter a valid email.
@@ -29,10 +29,10 @@
         placeholder="Enter your password"
       />
       <div
-        *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched"
+        *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
         class="error-message"
       >
-        Password is required.
+        Password is required and must be at least 6 characters.
       </div>
     </div>
 
@@ -46,13 +46,13 @@
         placeholder="Confirm your password"
       />
       <div
-        *ngIf="registerForm.get('confirmPassword').invalid && registerForm.get('confirmPassword').touched"
+        *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
         class="error-message"
       >
         Please confirm your password.
       </div>
       <div
-        *ngIf="registerForm.get('confirmPassword').value !== registerForm.get('password').value"
+        *ngIf="registerForm.get('confirmPassword')?.value !== registerForm.get('password')?.value && registerForm.get('confirmPassword')?.touched"
         class="error-message"
       >
         Passwords must match.

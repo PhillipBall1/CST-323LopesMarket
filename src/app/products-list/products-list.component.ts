@@ -11,21 +11,27 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./products-list.component.css']
 })
 export class ProductsListComponent implements OnInit {
-  products: Product[] = [];
-  newProduct: Product = { _id: '', item_name: '', quantity: 0, price: 0, category: '' };
-  isEditing: boolean = false;
+  products: Product[] = []; // Holds the list of products
+  newProduct: Product = { _id: '', item_name: '', quantity: 0, price: 0, category: '' }; // Object for creating or editing a product
+  isEditing: boolean = false; // Flag to indicate edit mode
 
   constructor(private productService: ProductService) { }
 
+  /**
+   * Runs when the component initializes.
+   * Fetches the list of products.
+   */
   ngOnInit(): void {
     this.getProducts();
   }
 
-  // Get all products
+  /**
+   * Fetches all products from the service.
+   */
   getProducts(): void {
     this.productService.getProducts().subscribe({
       next: (products) => {
-        this.products = products; // Assign the response array to products
+        this.products = products; // Assign the fetched products to the local array
       },
       error: (err) => {
         console.error('Error fetching products', err);
@@ -33,12 +39,14 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
-  // Create a new product
+  /**
+   * Creates a new product and adds it to the list.
+   */
   addProduct(): void {
     this.productService.createProduct(this.newProduct).subscribe({
       next: (product) => {
-        this.products.push(product);
-        this.resetForm();
+        this.products.push(product); // Add the new product to the list
+        this.resetForm(); // Reset the form fields
       },
       error: (err) => {
         console.error('Error adding product', err);
@@ -46,11 +54,14 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
-  // Delete a product
+  /**
+   * Deletes a product based on its ID.
+   * @param id - The ID of the product to be deleted.
+   */
   deleteProduct(id: string): void {
     this.productService.deleteProduct(id).subscribe({
       next: () => {
-        this.products = this.products.filter(product => product._id !== id);
+        this.products = this.products.filter(product => product._id !== id); // Remove the product from the list
       },
       error: (err) => {
         console.error('Error deleting product', err);
@@ -58,21 +69,25 @@ export class ProductsListComponent implements OnInit {
     });
   }
 
-  // Edit (populate form for) an existing product
+  /**
+   * Populates the form fields with an existing product's data for editing.
+   * @param product - The product to be edited.
+   */
   editProduct(product: Product): void {
-    this.newProduct = { ...product }; // Copy selected product into form fields
-    this.isEditing = true; // Set the flag to true, indicating we are in edit mode
+    this.newProduct = { ...product }; // Copy product details to the form
+    this.isEditing = true; // Enable edit mode
   }
 
-  // Update an existing product
+  /**
+   * Updates an existing product with new values.
+   */
   updateProduct(): void {
     if (this.newProduct._id) {
       const updatedProduct: Product = { ...this.newProduct, _id: this.newProduct._id };
       this.productService.updateProduct(this.newProduct._id, updatedProduct).subscribe({
         next: () => {
-          // after edit, refresh list and reset form
-          this.getProducts();
-          this.resetForm();
+          this.getProducts(); // Refresh product list after update
+          this.resetForm(); // Reset the form fields
         },
         error: (err) => {
           console.error('Error updating product', err);
@@ -81,7 +96,9 @@ export class ProductsListComponent implements OnInit {
     }
   }
 
-  // Reset form for adding or editing products
+  /**
+   * Resets the form fields and exits edit mode.
+   */
   resetForm(): void {
     this.newProduct = { _id: '', item_name: '', quantity: 0, price: 0, category: '' };
     this.isEditing = false;

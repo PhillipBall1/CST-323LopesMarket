@@ -11,25 +11,34 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./nav-bar.component.css'],
 })
 export class NavBarComponent implements OnInit {
-  isLoggedIn: boolean = false;
-  isMod: boolean = false;
+  isLoggedIn: boolean = false; // Tracks the user's authentication status
+  isMod: boolean = false; // Tracks if the user has moderator privileges
 
+  // Inject the authentication service to manage user authentication
   constructor(private authService: AuthService) {}
 
+  /**
+   * Runs when the component initializes.
+   * Subscribes to authentication status and moderator status observables.
+   */
   ngOnInit() {
     this.authService.isLoggedIn$.subscribe((loggedIn) => {
-      this.isLoggedIn = loggedIn;
+      this.isLoggedIn = loggedIn; // Update login status
     });
 
     this.authService.isMod$.subscribe((modStatus) => {
-      this.isMod = modStatus;
+      this.isMod = modStatus; // Update moderator status
     });
   }
 
+  /**
+   * Logs out the user after confirming their action.
+   * Calls the logout method from AuthService.
+   */
   logout() {
     const confirmLogout = confirm('Are you sure you want to logout?');
     if (confirmLogout) {
-      this.authService.logout();
+      this.authService.logout(); // Perform logout operation
     }
   }
 }
