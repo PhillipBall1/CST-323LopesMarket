@@ -39,8 +39,8 @@ export class CartService {
    */
   addToCart(product: Product): void {
     this.authService.userEmail$.pipe(
-      filter(email => !!email), // Ensure the email is available
-      switchMap(email => this.http.put<{ cart: string[] }>(`${this.apiUrl}/${email}/cart`, { productId: product._id })) // Send the product ID to API to add it to the cart
+      filter(email => !!email),
+      switchMap(email => this.http.put<{ cart: string[] }>(`${this.apiUrl}/${email}/cart`, { productId: product._id }))
     ).subscribe({
       next: (response) => {
         // Map the response cart items (which are product IDs) to actual product objects
